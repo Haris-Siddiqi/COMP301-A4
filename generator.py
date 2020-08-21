@@ -32,18 +32,30 @@ conjunctions = getWords('conjunctions.txt')
 
 def sentence():
     """Builds and returns a sentence."""
-    return nounPhrase() + " " + verbPhrase()
+    choice = random.choice(['yes', 'no'])
+    if choice == 'yes':
+        return nounPhrase() + " " + verbPhrase()
+    if choice == 'no':
+        return nounPhrase() + " " + verbPhrase() + " " + conjunction() + " " + nounPhrase() + " " + verbPhrase()
+
+def conjunction():
+    """Builds and returns a conjunction."""
+    return random.choice(conjunctions)
 
 def nounPhrase():
     """Builds and returns a noun phrase."""
-    return random.choice(articles) + " " + random.choice(nouns)
+    choice = random.choice(['yes', 'no'])
+    if choice == 'yes':    
+        return random.choice(articles) + " " + random.choice(nouns)
+    if choice == 'no':    
+        return random.choice(articles) + " " + random.choice(adjectives) + " " + random.choice(nouns)
 
 def verbPhrase():
     """Builds and returns a verb phrase."""
-    optional = random.choice(['yes', 'no'])
-    if optional == 'yes':
+    choice = random.choice(['yes', 'no'])
+    if choice == 'yes':
         return random.choice(verbs) + " " + nounPhrase() 
-    if optional == 'no':
+    if choice == 'no':
         return random.choice(verbs) + " " + nounPhrase() + " " + prepositionalPhrase()
 
 def prepositionalPhrase():
